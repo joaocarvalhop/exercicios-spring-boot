@@ -26,7 +26,7 @@ public class CalculadoraController {
 		return a - b;
 	}
 
-	// /calculadora/multiplicar?a=100&b=39
+	// /calculadora/multiplicar/100/39
 	@GetMapping("/multiplicar/{a}/{b}")
 	public int multiplicar(@PathVariable int a, @PathVariable int b) {
 		return a * b;
