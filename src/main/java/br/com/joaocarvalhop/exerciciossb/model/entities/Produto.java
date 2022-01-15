@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity(name = "Produtos")
 public class Produto {
@@ -12,14 +15,20 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	// Não aceita valores em branco
+	@NotBlank
 	private String nome;
 
+	// preço mínimo é zero
+	@Min(0)
 	private double preco;
 
+	@Min(0)
+	@Max(1)
 	private double desconto;
 
 	public Produto() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Produto(String nome, double preco, double desconto) {
