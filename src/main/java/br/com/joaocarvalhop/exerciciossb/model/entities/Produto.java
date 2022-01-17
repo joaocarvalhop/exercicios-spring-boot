@@ -27,10 +27,6 @@ public class Produto {
 	@Max(1)
 	private double desconto;
 
-	public Produto() {
-
-	}
-
 	public Produto(String nome, double preco, double desconto) {
 		super();
 		this.nome = nome;

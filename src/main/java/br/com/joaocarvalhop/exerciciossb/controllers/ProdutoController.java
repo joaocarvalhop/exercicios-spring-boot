@@ -17,9 +17,13 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	public @ResponseBody Produto novoProduto(@Valid Produto produto) {
-		produtoRepository.save(produto);
-		return produto;
+	public @ResponseBody Produto novoProduto(@Valid Produto produto1) {
+		produtoRepository.save(produto1);
+		return produto1;
+	}
+
+	public Iterable<Produto> obterProduto() {
+		return produtoRepository.findAll();
 	}
 
 }
