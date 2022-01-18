@@ -7,8 +7,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,14 +22,14 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
-	@PostMapping
-	public @ResponseBody Produto novoProduto(@Valid Produto produto1) {
-		produtoRepository.save(produto1);
-		return produto1;
+	@RequestMapping(method = { RequestMethod.POST, RequestMethod.PUT })
+	public @ResponseBody Produto salvarProduto(@Valid Produto produto) {
+		produtoRepository.save(produto);
+		return produto;
 	}
 
 	@GetMapping
-	public Iterable<Produto> obterProduto() {
+	public Iterable<Produto> obterProdutos() {
 		return produtoRepository.findAll();
 	}
 
@@ -37,5 +37,13 @@ public class ProdutoController {
 	public Optional<Produto> obterPorId(@PathVariable int id) {
 		return produtoRepository.findById(id);
 	}
+
+	// requisição do tipo put é usada para alterar todos os dados
+	// se quiser só alterar o nome, preco ou desconto é a req path
+	// @PutMapping
+	// public Produto alterarProduto(@Valid Produto produto) {
+	// produtoRepository.save(produto);
+	// return produto;
+	// }
 
 }
